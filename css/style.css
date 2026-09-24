@@ -19,17 +19,6 @@ body {
   color: var(--color-text);
   background-color: var(--color-bg);
   line-height: 1.6;
-  transition: opacity 0.3s ease;
-  animation: fadeIn 0.4s ease-in;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-body.fade-out {
-  opacity: 0;
 }
 
 .container {
@@ -92,11 +81,6 @@ a {
 
 .main-nav a:hover {
   border-bottom: 3px solid var(--color-accent);
-}
-
-.main-nav a.disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
 }
 
 .menu-toggle {
@@ -169,6 +153,50 @@ a {
   justify-content: center;
 }
 
+.hero-badge-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 300px;
+  padding: 28px;
+  background-color: var(--color-bg-alt);
+  border: 3px solid var(--color-secondary);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.badge-icon {
+  font-size: 2.6rem;
+}
+
+.badge-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.badge-title {
+  font-weight: bold;
+  color: var(--color-primary);
+  font-size: 1.1rem;
+}
+
+.badge-sub {
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.badge-decoration {
+  position: absolute;
+  top: -25px;
+  right: -25px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  opacity: 0.3;
+}
+
 .section-block {
   padding: 50px 0;
 }
@@ -202,26 +230,6 @@ a {
   min-height: 30px;
   margin-bottom: 20px;
   color: var(--color-primary);
-}
-
-.teaser {
-  text-align: center;
-}
-
-.teaser-cards {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 25px;
-}
-
-.teaser-card {
-  background-color: var(--color-bg-alt);
-  border: 2px dashed var(--color-secondary);
-  border-radius: var(--radius);
-  padding: 25px;
-  width: 260px;
 }
 
 .identity-table {

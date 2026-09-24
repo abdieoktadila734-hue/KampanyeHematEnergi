@@ -4,22 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const mainNav = document.getElementById("mainNav");
 
   if (menuButton && mainNav) {
-    menuButton.addEventListener("click", function (e) {
-      e.stopPropagation();
+    menuButton.addEventListener("click", function () {
       mainNav.classList.toggle("nav-open");
-    });
-
-    document.addEventListener("click", function (e) {
-      if (!mainNav.contains(e.target) && !menuButton.contains(e.target)) {
-        mainNav.classList.remove("nav-open");
-      }
-    });
-
-    const navLinks = mainNav.querySelectorAll("a");
-    navLinks.forEach(function (link) {
-      link.addEventListener("click", function () {
-        mainNav.classList.remove("nav-open");
-      });
     });
   }
 
@@ -54,21 +40,5 @@ document.addEventListener("DOMContentLoaded", function () {
       tipText.textContent = "💡 " + tips[currentTipIndex];
     });
   }
-
-  const pageLinks = document.querySelectorAll('a[href$=".html"]');
-
-  pageLinks.forEach(function (link) {
-    link.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      const destination = this.getAttribute("href");
-
-      document.body.classList.add("fade-out");
-
-      setTimeout(function () {
-        window.location.href = destination;
-      }, 300);
-    });
-  });
 
 });
