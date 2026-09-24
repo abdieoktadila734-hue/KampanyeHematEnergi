@@ -1,27 +1,34 @@
-// Nunggu semua elemen di halaman web siap dulu sebelum kodenya jalan
 document.addEventListener("DOMContentLoaded", function () {
 
-  // --- 1. MENU HP (HAMBURGER MENU) ---
-  // Ambil tombol menu dan area navigasinya
   const menuButton = document.getElementById("menuButton");
   const mainNav = document.getElementById("mainNav");
 
   if (menuButton && mainNav) {
-    menuButton.addEventListener("click", function () {
-      // Buka atau tutup menu saat tombol diklik
+    menuButton.addEventListener("click", function (e) {
+      e.stopPropagation();
       mainNav.classList.toggle("nav-open");
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!mainNav.contains(e.target) && !menuButton.contains(e.target)) {
+        mainNav.classList.remove("nav-open");
+      }
+    });
+
+    const navLinks = mainNav.querySelectorAll("a");
+    navLinks.forEach(function (link) {
+      link.addEventListener("click", function () {
+        mainNav.classList.remove("nav-open");
+      });
     });
   }
 
-  // --- 2. TAHUN OTOMATIS DI FOOTER ---
-  // Biar gak perlu ganti tahun manual setiap ganti tahun
   const yearSpan = document.getElementById("currentYear");
   if (yearSpan) {
-    yearSpan.textContent = new Date().getFullYear();
+    const today = new Date();
+    yearSpan.textContent = today.getFullYear();
   }
 
-  // --- 3. TOMBOL TIPS HEMAT ENERGI ---
-  // Daftar tips yang bakal tampil bergantian
   const tips = [
     "Matikan lampu saat meninggalkan ruangan, walau hanya sebentar.",
     "Cabut charger dari stopkontak setelah selesai digunakan.",
@@ -32,31 +39,32 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   let currentTipIndex = -1;
+
   const tipButton = document.getElementById("tipButton");
   const tipText = document.getElementById("tipText");
 
   if (tipButton && tipText) {
     tipButton.addEventListener("click", function () {
-      // Geser ke tips berikutnya, kalau sudah habis balik lagi ke tips pertama
-      currentTipIndex = (currentTipIndex + 1) % tips.length;
+      currentTipIndex = currentTipIndex + 1;
+
+      if (currentTipIndex >= tips.length) {
+        currentTipIndex = 0;
+      }
+
       tipText.textContent = "💡 " + tips[currentTipIndex];
     });
   }
 
-  // --- 4. EFEK PINDAH HALAMAN HALUS (FADE OUT) ---
-  // Ambil semua link yang mengarah ke file .html
   const pageLinks = document.querySelectorAll('a[href$=".html"]');
 
   pageLinks.forEach(function (link) {
     link.addEventListener("click", function (e) {
-      // Tahan dulu perpindahan halaman biar gak langsung mengagetkan
       e.preventDefault();
+
       const destination = this.getAttribute("href");
 
-      // Tambahkan efek redup (fade-out)
       document.body.classList.add("fade-out");
 
-      // Tunggu 0.3 detik (biar animasi selesai), baru pindah halaman
       setTimeout(function () {
         window.location.href = destination;
       }, 300);
