@@ -169,42 +169,6 @@ a {
   justify-content: center;
 }
 
-.hero-badge-box {
-  background-color: var(--color-bg-alt);
-  border: 2px solid var(--color-secondary);
-  border-radius: var(--radius);
-  padding: 30px 20px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  width: 100%;
-  max-width: 280px;
-}
-
-.badge-icon {
-  font-size: 3.5rem;
-  margin-bottom: 12px;
-}
-
-.badge-title {
-  display: block;
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: var(--color-primary);
-  margin-bottom: 6px;
-}
-
-.badge-sub {
-  display: block;
-  font-size: 0.95rem;
-  color: var(--color-text);
-  opacity: 0.85;
-}
-
-.badge-decoration {
-  font-size: 1.5rem;
-  margin-top: 15px;
-}
-
 .section-block {
   padding: 50px 0;
 }
@@ -296,8 +260,13 @@ a {
     display: block;
   }
 
+  .header-inner {
+    flex-wrap: wrap;
+  }
+
   .main-nav {
     width: 100%;
+    order: 3;
     display: none;
   }
 
