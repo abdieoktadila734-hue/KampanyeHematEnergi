@@ -1,13 +1,25 @@
+/* =========================================================
+   STYLE.CSS
+   Shared stylesheet for every page of the campaign website.
+   Theme: green & yellow (nature + energy), as suggested
+   in the project guide.
+   ========================================================= */
+
+/* ---------- 1. COLOR THEME & BASE SETUP ---------- */
+/* CSS variables let us reuse the same colors everywhere.
+   Change a color here once, and it updates the whole site. */
 :root {
-  --color-primary: #2e7d32;
-  --color-secondary: #66bb6a;
-  --color-accent: #fdd835;
+  --color-primary: #2e7d32;   /* dark green */
+  --color-secondary: #66bb6a; /* light green */
+  --color-accent: #fdd835;    /* yellow, like sunlight */
   --color-text: #263238;
   --color-bg: #ffffff;
-  --color-bg-alt: #f1f8f2;
+  --color-bg-alt: #f1f8f2;    /* very light green background */
   --radius: 10px;
 }
 
+/* This "reset" removes the browser's default spacing so our
+   own CSS is the only thing controlling layout. */
 * {
   margin: 0;
   padding: 0;
@@ -19,8 +31,11 @@ body {
   color: var(--color-text);
   background-color: var(--color-bg);
   line-height: 1.6;
+
 }
 
+/* A reusable "container" keeps content from stretching
+   edge-to-edge on wide screens. */
 .container {
   max-width: 1000px;
   margin: 0 auto;
@@ -41,6 +56,7 @@ a {
   text-decoration: none;
 }
 
+/* ---------- 2. HEADER & NAVIGATION ---------- */
 .site-header {
   background-color: var(--color-primary);
   padding: 15px 0;
@@ -75,6 +91,7 @@ a {
   transition: border-color 0.2s ease;
 }
 
+/* Highlights whichever page we're currently on */
 .main-nav a.active {
   border-bottom: 3px solid var(--color-accent);
 }
@@ -83,6 +100,8 @@ a {
   border-bottom: 3px solid var(--color-accent);
 }
 
+/* The hamburger button is hidden by default.
+   It only appears on small screens (see media query below). */
 .menu-toggle {
   display: none;
   background: none;
@@ -92,6 +111,7 @@ a {
   cursor: pointer;
 }
 
+/* ---------- 3. BUTTONS ---------- */
 .btn-primary,
 .btn-secondary {
   display: inline-block;
@@ -121,6 +141,7 @@ a {
   background-color: #1b5e20;
 }
 
+/* ---------- 4. HERO SECTION (Beranda) ---------- */
 .hero {
   display: flex;
   align-items: center;
@@ -153,8 +174,9 @@ a {
   justify-content: center;
 }
 
+/* Kotak "badge" sederhana di Beranda, pengganti ilustrasi SVG */
 .hero-badge-box {
-  position: relative;
+  position: relative;   /* supaya .badge-decoration bisa ditempel di pojoknya */
   display: flex;
   align-items: center;
   gap: 16px;
@@ -163,7 +185,7 @@ a {
   background-color: var(--color-bg-alt);
   border: 3px solid var(--color-secondary);
   border-radius: var(--radius);
-  overflow: hidden;
+  overflow: hidden; /* biar dekorasi bulat tidak keluar dari kotak */
 }
 
 .badge-icon {
@@ -186,6 +208,7 @@ a {
   color: var(--color-text);
 }
 
+/* Lingkaran kuning transparan di pojok, sekadar mempercantik kotak */
 .badge-decoration {
   position: absolute;
   top: -25px;
@@ -197,6 +220,7 @@ a {
   opacity: 0.3;
 }
 
+/* ---------- 5. GENERIC SECTION BLOCKS ---------- */
 .section-block {
   padding: 50px 0;
 }
@@ -220,6 +244,7 @@ a {
   border-bottom: 1px solid #e0e0e0;
 }
 
+/* ---------- 6. TIPS SECTION (interactive part) ---------- */
 .tips-section {
   text-align: center;
 }
@@ -232,6 +257,7 @@ a {
   color: var(--color-primary);
 }
 
+/* ---------- 7. IDENTITY TABLE (Tentang page) ---------- */
 .identity-table {
   width: 100%;
   border-collapse: collapse;
@@ -250,6 +276,7 @@ a {
   width: 220px;
 }
 
+/* ---------- 9. FOOTER ---------- */
 .site-footer {
   background-color: var(--color-primary);
   color: #ffffff;
@@ -263,21 +290,32 @@ a {
   color: var(--color-accent);
 }
 
+/* =========================================================
+   10. RESPONSIVE LAYOUT
+   Below 768px width (most phones), we:
+   - show the hamburger button
+   - turn the nav menu into a vertical dropdown
+   ========================================================= */
 @media (max-width: 768px) {
   .menu-toggle {
     display: block;
   }
 
+  /* THE FIX: allow header items to wrap to a new line.
+     Without this, the menu can't drop below the logo —
+     it gets squeezed into the same row and overlaps. */
   .header-inner {
     flex-wrap: wrap;
   }
 
   .main-nav {
     width: 100%;
-    order: 3;
-    display: none;
+    order: 3; /* push the menu to its own row, below logo + button */
+    display: none; /* hidden until toggled open by script.js */
   }
 
+  /* This class is added/removed by script.js when the
+     hamburger button is clicked */
   .main-nav.nav-open {
     display: block;
   }

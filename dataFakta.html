@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data &amp; Fakta | Hemat Energi, Selamatkan Bumi!</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- data.css khusus halaman ini, harus SETELAH style.css -->
+    <link rel="stylesheet" href="css/data.css">
+</head>
+
+<body>
+
+    <!-- ============ HEADER (sama seperti halaman lain) ============ -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">🌱 HematEnergi</a>
+
+            <button id="menuButton" class="menu-toggle" aria-label="Buka menu navigasi">
+                ☰
+            </button>
+
+            <nav id="mainNav" class="main-nav">
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="tentang.html">Tentang</a></li>
+                    <!-- class="active" dipindah ke sini karena kita sedang di halaman Data Fakta -->
+                    <li><a href="dataFakta.html" class="active">Data Fakta</a></li>
+                    <li><a href="#">Aksi Rekomendasi</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============ JUDUL HALAMAN ============ -->
+    <section class="section-block page-title">
+        <div class="container">
+            <h1>Data &amp; Fakta</h1>
+            <p class="tagline">Hasil kuesioner perilaku hemat energi siswa kelas XI</p>
+            <p class="data-note">
+                Skala jawaban 1–4 (1 = jarang, 4 = sering). Total 636 responden dari 639 siswa terdata (tingkat partisipasi 99,4%). Data sudah dirangkum tanpa memuat nama maupun identitas pribadi responden.
+            </p>
+            <div style="margin-top: 14px;">
+                <a href="data-perilaku-energi.json" target="_blank" class="btn-secondary" style="font-size: 0.85rem; padding: 6px 14px; text-decoration: none;">
+                    📄 Lihat / Unduh Data JSON
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ KARTU RINGKASAN (diisi otomatis oleh script.js) ============ -->
+    <section class="section-block">
+        <div class="container">
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <span class="stat-number" id="statResponden">-</span>
+                    <span class="stat-label">Siswa mengisi kuesioner</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="statPartisipasi">-</span>
+                    <span class="stat-label">Tingkat partisipasi</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="statRataRata">-</span>
+                    <span class="stat-label">Rata-rata skor (maks. 4,00)</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="statSering">-</span>
+                    <span class="stat-label">Jawaban "sering" melakukan</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ GRAFIK 1: KATEGORI PERILAKU ============ -->
+    <section class="section-block alt-bg">
+        <div class="container">
+            <h2>Seberapa Hemat Energi Siswa Kita?</h2>
+            <!-- chart-box membatasi tinggi grafik supaya tidak melar -->
+            <div class="chart-box">
+                <canvas id="chartKategori"></canvas>
+            </div>
+            <p class="chart-caption">
+                Sebanyak 59,4% siswa masuk kategori Sangat Baik dan 36,8% kategori Baik.
+                Hanya 24 siswa (3,8%) yang masih di kategori Cukup atau Kurang.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============ GRAFIK 2: PER PERNYATAAN ============ -->
+    <section class="section-block">
+        <div class="container">
+            <h2>Kebiasaan Apa yang Paling Sering Dilakukan?</h2>
+            <div class="chart-box">
+                <canvas id="chartButir"></canvas>
+            </div>
+            <p class="chart-caption">
+                Praktik hemat energi sehari-hari (P01) paling tinggi dengan skor 3,51.
+                Membatasi gawai (P04) dan menegur teman (P09) paling rendah, yaitu 3,22.
+            </p>
+            <!-- Daftar arti kode P01–P10, diisi otomatis oleh JavaScript -->
+            <ul class="keterangan-list" id="keteranganButir"></ul>
+        </div>
+    </section>
+
+    <!-- ============ GRAFIK 3: PER JURUSAN ============ -->
+    <section class="section-block alt-bg">
+        <div class="container">
+            <h2>Perbandingan Antar Jurusan</h2>
+            <div class="chart-box">
+                <canvas id="chartJurusan"></canvas>
+            </div>
+            <p class="chart-caption">
+                Jurusan PMN punya rata-rata tertinggi (3,51), sedangkan PPLG dan MPLB
+                paling rendah (3,24). Selisihnya tidak besar, jadi semua jurusan masih berkategori Baik ke atas.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============ GRAFIK 4: SEBARAN SKOR TOTAL ============ -->
+    <section class="section-block">
+        <div class="container">
+            <h2>Sebaran Skor Total Siswa</h2>
+            <div class="chart-box">
+                <canvas id="chartSebaran"></canvas>
+            </div>
+            <p class="chart-caption">
+                Skor terbanyak ada di angka maksimal 40 (86 siswa), dan sebagian besar
+                siswa mendapat skor 30 ke atas.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============ GRAFIK 5: PER RAYON ============ -->
+    <section class="section-block alt-bg">
+        <div class="container">
+            <h2>Perbandingan Antar Rayon</h2>
+            <div class="chart-box">
+                <canvas id="chartRayon"></canvas>
+            </div>
+            <p class="chart-caption">
+                Rayon Tajur memiliki rata-rata skor tertinggi (3,41), disusul Cicurug (3,38) dan Cibedug (3,37).
+                Seluruh rayon berada di kategori Baik dan Sangat Baik (di atas 3,30).
+            </p>
+        </div>
+    </section>
+
+    <!-- ============ GRAFIK 6: PER GAYA BELAJAR ============ -->
+    <section class="section-block">
+        <div class="container">
+            <h2>Perbandingan Berdasarkan Gaya Belajar</h2>
+            <div class="chart-box">
+                <canvas id="chartGayaBelajar"></canvas>
+            </div>
+            <p class="chart-caption">
+                Siswa bergaya belajar Kinestetik (3,40) dan Auditori (3,39) memiliki rata-rata skor sedikit lebih tinggi
+                dibanding Visual (3,32), dan semua gaya belajar mencapai kategori Sangat Baik.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="site-footer">
+        <div class="container">
+            <p><span id="currentYear"></span>@Kampanye Hemat Energi.</p>
+        </div>
+    </footer>
+
+    <!-- URUTAN SCRIPT PENTING! Dibaca dari atas ke bawah:
+         1) Chart.js  -> library grafik (dari internet / CDN)
+         2) script.js -> menu, tahun, grafik, dan data kuesioner (butuh no. 1) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
