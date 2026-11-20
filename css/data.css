@@ -1,0 +1,61 @@
+/* =========================================================
+   DATA.CSS
+   Style khusus untuk halaman dataFakta.html (Fase 2).
+   Warna & ukuran memakai variabel dari style.css,
+   jadi style.css harus dipanggil LEBIH DULU di HTML.
+   ========================================================= */
+
+/* Catatan kecil di bawah judul halaman */
+.data-note {
+  font-size: 0.9rem;
+  color: #607d8b;
+}
+
+/* Kartu ringkasan: otomatis turun ke baris baru kalau layar sempit */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+  background-color: var(--color-bg-alt);
+  border-top: 4px solid var(--color-accent);
+  border-radius: var(--radius);
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.stat-label {
+  font-size: 0.9rem;
+}
+
+/* Kotak pembungkus grafik: tingginya dibatasi supaya grafik rapi */
+.chart-box {
+  position: relative;
+  height: 320px;
+  margin-bottom: 15px;
+}
+
+/* Kalimat penjelas singkat di bawah grafik */
+.chart-caption {
+  font-style: italic;
+  border-left: 4px solid var(--color-secondary);
+  padding-left: 12px;
+}
+
+/* Daftar arti kode P01-P10 */
+.keterangan-list {
+  margin-top: 10px;
+  padding-left: 20px;
+  font-size: 0.9rem;
+  color: #546e7a;
+}
