@@ -1,29 +1,22 @@
-/* =========================================================
-   STYLE.CSS
-   Shared stylesheet for every page of the campaign website.
-   Theme: green & yellow (nature + energy), as suggested
-   in the project guide.
-   ========================================================= */
-
-/* ---------- 1. COLOR THEME & BASE SETUP ---------- */
-/* CSS variables let us reuse the same colors everywhere.
-   Change a color here once, and it updates the whole site. */
 :root {
-  --color-primary: #2e7d32;   /* dark green */
-  --color-secondary: #66bb6a; /* light green */
-  --color-accent: #fdd835;    /* yellow, like sunlight */
+  --color-primary: #2e7d32;
+  --color-secondary: #66bb6a;
+  --color-accent: #fdd835;
   --color-text: #263238;
   --color-bg: #ffffff;
-  --color-bg-alt: #f1f8f2;    /* very light green background */
+  --color-bg-alt: #f1f8f2;
   --radius: 10px;
+  --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* This "reset" removes the browser's default spacing so our
-   own CSS is the only thing controlling layout. */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -31,11 +24,8 @@ body {
   color: var(--color-text);
   background-color: var(--color-bg);
   line-height: 1.6;
-
 }
 
-/* A reusable "container" keeps content from stretching
-   edge-to-edge on wide screens. */
 .container {
   max-width: 1000px;
   margin: 0 auto;
@@ -45,6 +35,7 @@ body {
 h1, h2, h3 {
   color: var(--color-primary);
   margin-bottom: 15px;
+  transition: color 0.2s ease;
 }
 
 p {
@@ -54,15 +45,17 @@ p {
 a {
   color: var(--color-primary);
   text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
 }
 
-/* ---------- 2. HEADER & NAVIGATION ---------- */
 .site-header {
   background-color: var(--color-primary);
   padding: 15px 0;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.3s ease;
 }
 
 .header-inner {
@@ -75,6 +68,14 @@ a {
   color: #ffffff;
   font-size: 1.4rem;
   font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.25s ease;
+}
+
+.logo:hover {
+  transform: scale(1.03);
 }
 
 .main-nav ul {
@@ -88,20 +89,18 @@ a {
   font-weight: 500;
   padding: 6px 4px;
   border-bottom: 3px solid transparent;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.25s ease, opacity 0.2s ease;
 }
 
-/* Highlights whichever page we're currently on */
 .main-nav a.active {
   border-bottom: 3px solid var(--color-accent);
 }
 
 .main-nav a:hover {
   border-bottom: 3px solid var(--color-accent);
+  opacity: 0.95;
 }
 
-/* The hamburger button is hidden by default.
-   It only appears on small screens (see media query below). */
 .menu-toggle {
   display: none;
   background: none;
@@ -109,9 +108,13 @@ a {
   color: #ffffff;
   font-size: 1.6rem;
   cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-/* ---------- 3. BUTTONS ---------- */
+.menu-toggle:active {
+  transform: scale(0.92);
+}
+
 .btn-primary,
 .btn-secondary {
   display: inline-block;
@@ -121,27 +124,46 @@ a {
   border: none;
   cursor: pointer;
   font-size: 1rem;
+  text-decoration: none;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              background-color 0.2s ease, 
+              box-shadow 0.25s ease;
 }
 
 .btn-primary {
   background-color: var(--color-accent);
   color: var(--color-primary);
+  box-shadow: 0 3px 8px rgba(253, 216, 53, 0.35);
 }
 
 .btn-primary:hover {
   background-color: #fbc02d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(253, 216, 53, 0.45);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(253, 216, 53, 0.3);
 }
 
 .btn-secondary {
   background-color: var(--color-primary);
   color: #ffffff;
+  box-shadow: 0 3px 8px rgba(46, 125, 50, 0.25);
 }
 
 .btn-secondary:hover {
   background-color: #1b5e20;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(46, 125, 50, 0.35);
 }
 
-/* ---------- 4. HERO SECTION (Beranda) ---------- */
+.btn-secondary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(46, 125, 50, 0.2);
+}
+
 .hero {
   display: flex;
   align-items: center;
@@ -158,6 +180,7 @@ a {
 
 .hero-text h1 {
   font-size: 2.3rem;
+  line-height: 1.25;
 }
 
 .tagline {
@@ -174,9 +197,8 @@ a {
   justify-content: center;
 }
 
-/* Kotak "badge" sederhana di Beranda, pengganti ilustrasi SVG */
 .hero-badge-box {
-  position: relative;   /* supaya .badge-decoration bisa ditempel di pojoknya */
+  position: relative;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -185,11 +207,34 @@ a {
   background-color: var(--color-bg-alt);
   border: 3px solid var(--color-secondary);
   border-radius: var(--radius);
-  overflow: hidden; /* biar dekorasi bulat tidak keluar dari kotak */
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(46, 125, 50, 0.08);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  animation: floatBadge 4.5s ease-in-out infinite alternate;
+}
+
+.hero-badge-box:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 24px rgba(46, 125, 50, 0.16);
+}
+
+@keyframes floatBadge {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-6px);
+  }
 }
 
 .badge-icon {
   font-size: 2.6rem;
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hero-badge-box:hover .badge-icon {
+  transform: scale(1.15) rotate(8deg);
 }
 
 .badge-content {
@@ -208,7 +253,6 @@ a {
   color: var(--color-text);
 }
 
-/* Lingkaran kuning transparan di pojok, sekadar mempercantik kotak */
 .badge-decoration {
   position: absolute;
   top: -25px;
@@ -218,9 +262,13 @@ a {
   border-radius: 50%;
   background-color: var(--color-accent);
   opacity: 0.3;
+  transition: transform 0.4s ease;
 }
 
-/* ---------- 5. GENERIC SECTION BLOCKS ---------- */
+.hero-badge-box:hover .badge-decoration {
+  transform: scale(1.2);
+}
+
 .section-block {
   padding: 50px 0;
 }
@@ -239,12 +287,19 @@ a {
 }
 
 .goal-list li {
-  padding: 10px 0;
+  padding: 12px 10px;
   font-size: 1.05rem;
   border-bottom: 1px solid #e0e0e0;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, transform 0.2s ease, padding-left 0.2s ease;
 }
 
-/* ---------- 6. TIPS SECTION (interactive part) ---------- */
+.goal-list li:hover {
+  background-color: rgba(102, 187, 106, 0.08);
+  padding-left: 16px;
+  transform: translateX(4px);
+}
+
 .tips-section {
   text-align: center;
 }
@@ -252,23 +307,26 @@ a {
 .tip-text {
   font-size: 1.15rem;
   font-weight: 500;
-  min-height: 30px;
+  min-height: 36px;
   margin-bottom: 20px;
   color: var(--color-primary);
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-/* ---------- 7. IDENTITY TABLE (Tentang page) ---------- */
 .identity-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
+  border-radius: var(--radius);
+  overflow: hidden;
 }
 
 .identity-table th,
 .identity-table td {
   text-align: left;
-  padding: 12px;
+  padding: 12px 16px;
   border: 1px solid #dcdcdc;
+  transition: background-color 0.2s ease;
 }
 
 .identity-table th {
@@ -276,7 +334,22 @@ a {
   width: 220px;
 }
 
-/* ---------- 9. FOOTER ---------- */
+.identity-table tr:hover td {
+  background-color: rgba(241, 248, 242, 0.5);
+}
+
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: opacity, transform;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .site-footer {
   background-color: var(--color-primary);
   color: #ffffff;
@@ -290,34 +363,28 @@ a {
   color: var(--color-accent);
 }
 
-/* =========================================================
-   10. RESPONSIVE LAYOUT
-   Below 768px width (most phones), we:
-   - show the hamburger button
-   - turn the nav menu into a vertical dropdown
-   ========================================================= */
 @media (max-width: 768px) {
   .menu-toggle {
     display: block;
   }
 
-  /* THE FIX: allow header items to wrap to a new line.
-     Without this, the menu can't drop below the logo —
-     it gets squeezed into the same row and overlaps. */
   .header-inner {
     flex-wrap: wrap;
   }
 
   .main-nav {
     width: 100%;
-    order: 3; /* push the menu to its own row, below logo + button */
-    display: none; /* hidden until toggled open by script.js */
+    order: 3;
+    display: none;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
   }
 
-  /* This class is added/removed by script.js when the
-     hamburger button is clicked */
   .main-nav.nav-open {
     display: block;
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .main-nav ul {
@@ -338,5 +405,17 @@ a {
   .hero {
     text-align: center;
     flex-direction: column-reverse;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  .fade-in-section,
+  .hero-badge-box,
+  .badge-icon {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
   }
 }

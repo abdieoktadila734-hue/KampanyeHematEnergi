@@ -1,61 +1,102 @@
-/* =========================================================
-   DATA.CSS
-   Style khusus untuk halaman dataFakta.html (Fase 2).
-   Warna & ukuran memakai variabel dari style.css,
-   jadi style.css harus dipanggil LEBIH DULU di HTML.
-   ========================================================= */
-
-/* Catatan kecil di bawah judul halaman */
 .data-note {
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   color: #607d8b;
+  max-width: 720px;
+  margin: 0 auto 12px auto;
+  line-height: 1.5;
 }
 
-/* Kartu ringkasan: otomatis turun ke baris baru kalau layar sempit */
 .stat-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
+  gap: 18px;
 }
 
 .stat-card {
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding: 20px;
+  padding: 24px 18px;
   background-color: var(--color-bg-alt);
   border-top: 4px solid var(--color-accent);
   border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              box-shadow 0.25s ease, 
+              border-top-color 0.25s ease;
+  will-change: transform, box-shadow;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(46, 125, 50, 0.12);
+  border-top-color: var(--color-secondary);
 }
 
 .stat-number {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: bold;
   color: var(--color-primary);
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+.stat-card:hover .stat-number {
+  transform: scale(1.05);
 }
 
 .stat-label {
   font-size: 0.9rem;
+  color: var(--color-text);
+  margin-top: 4px;
 }
 
-/* Kotak pembungkus grafik: tingginya dibatasi supaya grafik rapi */
 .chart-box {
   position: relative;
-  height: 320px;
-  margin-bottom: 15px;
+  height: 330px;
+  margin-bottom: 16px;
+  background-color: #ffffff;
+  padding: 16px;
+  border-radius: var(--radius);
+  border: 1px solid #e2ece3;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-/* Kalimat penjelas singkat di bawah grafik */
+.chart-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(46, 125, 50, 0.08);
+  border-color: #c8e6c9;
+}
+
 .chart-caption {
   font-style: italic;
   border-left: 4px solid var(--color-secondary);
-  padding-left: 12px;
+  padding: 4px 0 4px 14px;
+  color: #37474f;
+  background: rgba(241, 248, 242, 0.5);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  transition: background-color 0.2s ease, border-left-color 0.2s ease;
 }
 
-/* Daftar arti kode P01-P10 */
+.chart-caption:hover {
+  background: rgba(241, 248, 242, 0.9);
+  border-left-color: var(--color-primary);
+}
+
 .keterangan-list {
-  margin-top: 10px;
+  margin-top: 14px;
   padding-left: 20px;
   font-size: 0.9rem;
   color: #546e7a;
+}
+
+.keterangan-list li {
+  padding: 4px 0;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.keterangan-list li:hover {
+  color: var(--color-primary);
+  transform: translateX(4px);
 }

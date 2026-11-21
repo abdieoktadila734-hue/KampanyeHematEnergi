@@ -6,13 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data &amp; Fakta | Hemat Energi, Selamatkan Bumi!</title>
     <link rel="stylesheet" href="css/style.css">
-    <!-- data.css khusus halaman ini, harus SETELAH style.css -->
     <link rel="stylesheet" href="css/data.css">
 </head>
 
 <body>
 
-    <!-- ============ HEADER (sama seperti halaman lain) ============ -->
     <header class="site-header">
         <div class="container header-inner">
             <a href="index.html" class="logo">🌱 HematEnergi</a>
@@ -25,15 +23,13 @@
                 <ul>
                     <li><a href="index.html">Beranda</a></li>
                     <li><a href="tentang.html">Tentang</a></li>
-                    <!-- class="active" dipindah ke sini karena kita sedang di halaman Data Fakta -->
                     <li><a href="dataFakta.html" class="active">Data Fakta</a></li>
-                    <li><a href="#">Aksi Rekomendasi</a></li>
+                    <li><a href="aksi.html">Aksi Rekomendasi</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- ============ JUDUL HALAMAN ============ -->
     <section class="section-block page-title">
         <div class="container">
             <h1>Data &amp; Fakta</h1>
@@ -49,7 +45,6 @@
         </div>
     </section>
 
-    <!-- ============ KARTU RINGKASAN (diisi otomatis oleh script.js) ============ -->
     <section class="section-block">
         <div class="container">
             <div class="stat-grid">
@@ -73,11 +68,9 @@
         </div>
     </section>
 
-    <!-- ============ GRAFIK 1: KATEGORI PERILAKU ============ -->
     <section class="section-block alt-bg">
         <div class="container">
             <h2>Seberapa Hemat Energi Siswa Kita?</h2>
-            <!-- chart-box membatasi tinggi grafik supaya tidak melar -->
             <div class="chart-box">
                 <canvas id="chartKategori"></canvas>
             </div>
@@ -88,7 +81,6 @@
         </div>
     </section>
 
-    <!-- ============ GRAFIK 2: PER PERNYATAAN ============ -->
     <section class="section-block">
         <div class="container">
             <h2>Kebiasaan Apa yang Paling Sering Dilakukan?</h2>
@@ -99,12 +91,10 @@
                 Praktik hemat energi sehari-hari (P01) paling tinggi dengan skor 3,51.
                 Membatasi gawai (P04) dan menegur teman (P09) paling rendah, yaitu 3,22.
             </p>
-            <!-- Daftar arti kode P01–P10, diisi otomatis oleh JavaScript -->
             <ul class="keterangan-list" id="keteranganButir"></ul>
         </div>
     </section>
 
-    <!-- ============ GRAFIK 3: PER JURUSAN ============ -->
     <section class="section-block alt-bg">
         <div class="container">
             <h2>Perbandingan Antar Jurusan</h2>
@@ -118,7 +108,6 @@
         </div>
     </section>
 
-    <!-- ============ GRAFIK 4: SEBARAN SKOR TOTAL ============ -->
     <section class="section-block">
         <div class="container">
             <h2>Sebaran Skor Total Siswa</h2>
@@ -132,7 +121,6 @@
         </div>
     </section>
 
-    <!-- ============ GRAFIK 5: PER RAYON ============ -->
     <section class="section-block alt-bg">
         <div class="container">
             <h2>Perbandingan Antar Rayon</h2>
@@ -146,7 +134,6 @@
         </div>
     </section>
 
-    <!-- ============ GRAFIK 6: PER GAYA BELAJAR ============ -->
     <section class="section-block">
         <div class="container">
             <h2>Perbandingan Berdasarkan Gaya Belajar</h2>
@@ -160,16 +147,25 @@
         </div>
     </section>
 
-    <!-- ============ FOOTER ============ -->
+    <section class="section-block page-title">
+        <div class="container" style="text-align: center;">
+            <h2>Dari Data Menuju Tindakan Nyata</h2>
+            <p class="tagline">Data kuesioner telah membuktikan kebiasaan dan potensi penghematan kita.</p>
+            <p style="max-width: 650px; margin: 0 auto 20px auto; color: var(--color-text);">
+                Langkah selanjutnya adalah menyusun aksi konkret untuk butir-butir yang masih rendah (seperti batasan laptop P04 dan keberanian menegur P09). Mari bergabung dalam aksi nyata!
+            </p>
+            <a href="aksi.html" class="btn-primary" style="font-size: 1.05rem; padding: 14px 28px;">
+                Buka Halaman Aksi &amp; Rekomendasi ➜
+            </a>
+        </div>
+    </section>
+
     <footer class="site-footer">
         <div class="container">
             <p><span id="currentYear"></span>@Kampanye Hemat Energi.</p>
         </div>
     </footer>
 
-    <!-- URUTAN SCRIPT PENTING! Dibaca dari atas ke bawah:
-         1) Chart.js  -> library grafik (dari internet / CDN)
-         2) script.js -> menu, tahun, grafik, dan data kuesioner (butuh no. 1) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
     <script src="js/script.js"></script>
 </body>
