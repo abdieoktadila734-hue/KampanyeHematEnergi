@@ -147,6 +147,111 @@
         </div>
     </section>
 
+    <section class="section-block alt-bg">
+        <div class="container">
+            <div class="bivariat-banner">
+                <span class="card-badge" style="background-color: #c8e6c9; color: #1b5e20; border-color: #a5d6a7; margin-bottom: 8px;">Kolaborasi Lintas Mapel: Matematika &amp; Bahasa Indonesia</span>
+                <h3>Riset Regresi Bivariat: Pengetahuan (KIK) vs Perilaku Realistis (PP)</h3>
+                <p>
+                    Berdasarkan Projek Inkolab Konservasi Energi oleh Kelompok 4 (PPLG XI-4), dilakukan analisis bivariat pada 107 siswa DKV untuk menguji apakah pemahaman teori energi secara otomatis menghasilkan tindakan hemat listrik di sekolah.
+                </p>
+            </div>
+
+            <div class="stat-grid" style="margin-bottom: 24px;">
+                <div class="stat-card">
+                    <span class="stat-number">107</span>
+                    <span class="stat-label">Siswa Sampel Riset (DKV XI-1, 2, 3)</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">0,270</span>
+                    <span class="stat-label">Korelasi Pearson (r, p=0,005)</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">7,27%</span>
+                    <span class="stat-label">Koefisien Determinasi (R²)</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">21,50%</span>
+                    <span class="stat-label">Kesenjangan Teori vs Perilaku Nyata</span>
+                </div>
+            </div>
+
+            <h2>Diagram Pencar (Scatter Plot) &amp; Garis Regresi Linier</h2>
+            <div class="chart-box" style="height: 380px;">
+                <canvas id="chartBivariat"></canvas>
+            </div>
+            <p class="chart-caption">
+                Persamaan Regresi Linier: <strong>Y = 22,34 + 0,322X</strong> (Rata-rata Pengetahuan X = 34,66; Rata-rata Perilaku Y = 33,50). Gradien positif membuktikan peningkatan pemahaman membantu perilaku hemat energi, namun berkorelasi lemah (r = 0,270).
+            </p>
+
+            <h3 style="margin-top: 28px; color: var(--color-primary); font-size: 1.15rem;">Tabulasi Silang Pengetahuan (KIK) vs Perilaku (PP)</h3>
+            <div class="bivariat-table-wrapper">
+                <table class="bivariat-table">
+                    <thead>
+                        <tr>
+                            <th>Kategori Pengetahuan (X)</th>
+                            <th>Kategori Perilaku (Y)</th>
+                            <th>Jumlah Siswa</th>
+                            <th>Persentase</th>
+                            <th>Karakteristik Lapangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Tinggi (≥35)</strong></td>
+                            <td><strong>Tinggi (≥34)</strong></td>
+                            <td>38 siswa</td>
+                            <td>35,51%</td>
+                            <td>Memahami konsep efisiensi dan konsisten menerapkan hemat energi.</td>
+                        </tr>
+                        <tr style="background-color: #fff9c4;">
+                            <td><strong>Tinggi (≥35)</strong></td>
+                            <td><strong>Rendah (&lt;34)</strong></td>
+                            <td><strong>23 siswa</strong></td>
+                            <td><strong>21,50%</strong></td>
+                            <td><strong>Kesenjangan Kritis:</strong> Paham teori, namun sering lalai karena terburu-buru pulang atau menganggap sepele daya siaga.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rendah (&lt;35)</strong></td>
+                            <td><strong>Tinggi (≥34)</strong></td>
+                            <td>19 siswa</td>
+                            <td>17,76%</td>
+                            <td>Disiplin mematikan perangkat karena kepatuhan tata tertib atau jadwal piket kelas.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rendah (&lt;35)</strong></td>
+                            <td><strong>Rendah (&lt;34)</strong></td>
+                            <td>27 siswa</td>
+                            <td>25,23%</td>
+                            <td>Pemahaman teori dan tindakan nyata penghematan energi masih perlu dibina.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="bivariat-insights">
+                <div class="bivariat-insight-card">
+                    <h4>Mengapa R² Hanya 7,27%?</h4>
+                    <p>
+                        Pengetahuan kognitif hanya menyumbang 7,27% terhadap perilaku. Sisanya 92,73% sangat ditentukan oleh faktor kebiasaan (*habit*), pengawasan guru, ketegasan tata tertib, dan sistem fasilitas kelas.
+                    </p>
+                </div>
+                <div class="bivariat-insight-card">
+                    <h4>Penyebab Utama Kelalaian Siswa</h4>
+                    <p>
+                        Ketergesaan saat bel kepulangan berbunyi, anggapan sepele terhadap daya siaga (*standby power*) charger dan monitor lab, serta sikap yang masih reaktif menunggu teguran orang lain.
+                    </p>
+                </div>
+                <div class="bivariat-insight-card">
+                    <h4>Landasan Rekomendasi di Halaman Aksi</h4>
+                    <p>
+                        Hasil riset membuktikan edukasi ceramah saja tidak cukup. Dibutuhkan intervensi konkret: otomasi sistem komputer lab, buku kontrol checklist harian, dan duta pengingat sebaya.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="section-block page-title">
         <div class="container" style="text-align: center;">
             <h2>Dari Data Menuju Tindakan Nyata</h2>

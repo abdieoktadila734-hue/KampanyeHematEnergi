@@ -369,6 +369,31 @@ const DATA_KOMITMEN_SEED = [
   }
 ];
 
+const DATA_BIVARIAT_POINTS = [
+  {x: 30, y: 32}, {x: 31, y: 30}, {x: 31, y: 39}, {x: 32, y: 31}, {x: 36, y: 29},
+  {x: 27, y: 24}, {x: 30, y: 29}, {x: 30, y: 31}, {x: 36, y: 36}, {x: 38, y: 39},
+  {x: 36, y: 35}, {x: 30, y: 27}, {x: 40, y: 39}, {x: 38, y: 25}, {x: 30, y: 35},
+  {x: 30, y: 31}, {x: 37, y: 31}, {x: 37, y: 35}, {x: 37, y: 35}, {x: 39, y: 38},
+  {x: 30, y: 30}, {x: 30, y: 30}, {x: 40, y: 34}, {x: 29, y: 33}, {x: 36, y: 28},
+  {x: 37, y: 30}, {x: 40, y: 35}, {x: 31, y: 37}, {x: 35, y: 27}, {x: 38, y: 33},
+  {x: 36, y: 35}, {x: 40, y: 25}, {x: 35, y: 34}, {x: 35, y: 33}, {x: 37, y: 28},
+  {x: 37, y: 36}, {x: 31, y: 37}, {x: 31, y: 27}, {x: 31, y: 34}, {x: 35, y: 34},
+  {x: 35, y: 36}, {x: 32, y: 34}, {x: 29, y: 40}, {x: 36, y: 37}, {x: 31, y: 34},
+  {x: 36, y: 34}, {x: 40, y: 39}, {x: 32, y: 30}, {x: 36, y: 29}, {x: 34, y: 32},
+  {x: 38, y: 40}, {x: 35, y: 31}, {x: 40, y: 37}, {x: 36, y: 39}, {x: 38, y: 31},
+  {x: 30, y: 35}, {x: 30, y: 40}, {x: 32, y: 32}, {x: 34, y: 32}, {x: 33, y: 36},
+  {x: 39, y: 40}, {x: 35, y: 40}, {x: 39, y: 40}, {x: 39, y: 30}, {x: 34, y: 34},
+  {x: 33, y: 36}, {x: 38, y: 40}, {x: 33, y: 35}, {x: 35, y: 34}, {x: 38, y: 29},
+  {x: 34, y: 39}, {x: 35, y: 30}, {x: 37, y: 35}, {x: 32, y: 26}, {x: 39, y: 40},
+  {x: 35, y: 35}, {x: 31, y: 30}, {x: 39, y: 33}, {x: 39, y: 34}, {x: 38, y: 39},
+  {x: 32, y: 30}, {x: 35, y: 32}, {x: 30, y: 27}, {x: 30, y: 29}, {x: 39, y: 33},
+  {x: 40, y: 38}, {x: 38, y: 38}, {x: 33, y: 33}, {x: 34, y: 37}, {x: 28, y: 37},
+  {x: 38, y: 34}, {x: 36, y: 28}, {x: 34, y: 29}, {x: 37, y: 34}, {x: 31, y: 29},
+  {x: 34, y: 38}, {x: 39, y: 38}, {x: 38, y: 35}, {x: 27, y: 29}, {x: 30, y: 40},
+  {x: 40, y: 29}, {x: 30, y: 31}, {x: 36, y: 40}, {x: 33, y: 27}, {x: 38, y: 40},
+  {x: 35, y: 30}, {x: 36, y: 32}
+];
+
 document.addEventListener("DOMContentLoaded", function () {
   const menuButton = document.getElementById("menuButton");
   const mainNav = document.getElementById("mainNav");
@@ -796,6 +821,85 @@ function buatGrafik(data) {
         },
         plugins: {
           legend: { display: false }
+        }
+      }
+    });
+  }
+
+  const elChartBivariat = document.getElementById("chartBivariat");
+  if (elChartBivariat && typeof DATA_BIVARIAT_POINTS !== "undefined") {
+    new Chart(elChartBivariat, {
+      type: "scatter",
+      data: {
+        datasets: [
+          {
+            label: "Titik Responden (107 Siswa DKV)",
+            data: DATA_BIVARIAT_POINTS,
+            backgroundColor: "rgba(46, 125, 50, 0.65)",
+            borderColor: "#2e7d32",
+            borderWidth: 1,
+            pointRadius: 5,
+            pointHoverRadius: 7
+          },
+          {
+            type: "line",
+            label: "Garis Regresi Linier (Y = 22,34 + 0,322X)",
+            data: [
+              { x: 26, y: 30.71 },
+              { x: 40, y: 35.22 }
+            ],
+            borderColor: "#d32f2f",
+            borderWidth: 3,
+            fill: false,
+            pointRadius: 0,
+            tension: 0
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: {
+          duration: 1200,
+          easing: "easeOutQuart"
+        },
+        plugins: {
+          legend: {
+            display: true,
+            position: "top"
+          },
+          tooltip: {
+            callbacks: {
+              label: function (ctx) {
+                if (ctx.dataset.type === "line") {
+                  return "Garis Regresi: Y = 22,34 + 0,322X";
+                }
+                return "KIK (X): " + ctx.raw.x + " | PP (Y): " + ctx.raw.y;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: "Variabel Bebas (X): Nilai Pengetahuan KIK (Skala Maks 40)",
+              color: "#2e7d32",
+              font: { weight: "bold" }
+            },
+            min: 25,
+            max: 42
+          },
+          y: {
+            title: {
+              display: true,
+              text: "Variabel Terikat (Y): Nilai Perilaku Realistis PP (Skala Maks 40)",
+              color: "#2e7d32",
+              font: { weight: "bold" }
+            },
+            min: 22,
+            max: 42
+          }
         }
       }
     });
