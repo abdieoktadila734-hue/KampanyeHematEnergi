@@ -453,10 +453,61 @@
 }
 
 .admin-actions {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px;
   margin-top: 20px;
+}
+
+.admin-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-size: 0.86rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: #ffffff !important;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, opacity 0.2s ease;
+  line-height: 1.4;
+  text-align: center;
+  width: 100%;
+}
+
+.admin-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+  opacity: 0.95;
+}
+
+.admin-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+.admin-btn-excel {
+  background-color: #2e7d32 !important;
+  color: #ffffff !important;
+}
+
+.admin-btn-csv {
+  background-color: #1565c0 !important;
+  color: #ffffff !important;
+}
+
+.admin-btn-json {
+  background-color: #455a64 !important;
+  color: #ffffff !important;
+}
+
+.admin-btn-reset {
+  background-color: #d32f2f !important;
+  color: #ffffff !important;
 }
 
 .inkolab-lead-banner {
