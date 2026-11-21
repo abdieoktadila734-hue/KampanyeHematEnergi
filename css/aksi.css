@@ -528,48 +528,74 @@
   margin-bottom: 8px;
 }
 
-.badge-mapel-mtk {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background-color: #ede7f6;
-  color: #512da8;
-  border: 1px solid #d1c4e9;
-  font-weight: 800;
-  font-size: 0.8rem;
-  padding: 4px 12px;
-  border-radius: 20px;
-  margin-bottom: 10px;
-  letter-spacing: 0.2px;
+.sumber-wrapper {
+  margin-bottom: 12px;
 }
 
-.badge-mapel-bindo {
+.sumber-tag {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  background-color: #e3f2fd;
-  color: #0d47a1;
-  border: 1px solid #90caf9;
-  font-weight: 800;
-  font-size: 0.8rem;
-  padding: 4px 12px;
-  border-radius: 20px;
-  margin-bottom: 10px;
-  letter-spacing: 0.2px;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.badge-mapel-keduanya {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background-color: #e8f5e9;
+.sumber-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.sumber-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 5px 9px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.sumber-value {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  padding: 5px 12px;
+}
+
+.sumber-keduanya {
+  background-color: #f1f8f2;
+  border-color: #81c784;
   color: #1b5e20;
-  border: 1px solid #81c784;
-  font-weight: 800;
-  font-size: 0.8rem;
-  padding: 4px 12px;
-  border-radius: 20px;
-  margin-bottom: 10px;
-  letter-spacing: 0.2px;
+}
+
+.sumber-keduanya .sumber-label {
+  background-color: #2e7d32;
+  color: #ffffff;
+  border-right-color: #1b5e20;
+}
+
+.sumber-bindo {
+  background-color: #f0f7ff;
+  border-color: #90caf9;
+  color: #0d47a1;
+}
+
+.sumber-bindo .sumber-label {
+  background-color: #1565c0;
+  color: #ffffff;
+  border-right-color: #0d47a1;
+}
+
+.sumber-mtk {
+  background-color: #f6f2fb;
+  border-color: #d1c4e9;
+  color: #4a148c;
+}
+
+.sumber-mtk .sumber-label {
+  background-color: #6a1b9a;
+  color: #ffffff;
+  border-right-color: #4a148c;
 }
 

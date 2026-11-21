@@ -1131,6 +1131,7 @@ function inisialisasiAdmin() {
   const btnClose = document.getElementById("btnCloseAdmin");
   const btnExportJson = document.getElementById("btnExportJson");
   const btnExportCsv = document.getElementById("btnExportCsv");
+  const btnExportExcel = document.getElementById("btnExportExcel");
   const btnReset = document.getElementById("btnResetData");
 
   const statTotal = document.getElementById("adminTotalCount");
@@ -1219,17 +1220,78 @@ function inisialisasiAdmin() {
     });
   }
 
+  if (btnExportExcel) {
+    btnExportExcel.addEventListener("click", function () {
+      try {
+        const stored = localStorage.getItem("komitmen_pengunjung");
+        const list = stored ? JSON.parse(stored) : DATA_KOMITMEN_SEED;
+
+        let tableHtml = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">';
+        tableHtml += '<head><meta charset="utf-8">';
+        tableHtml += '<style>';
+        tableHtml += 'table { border-collapse: collapse; width: 100%; font-family: Segoe UI, Calibri, Arial, sans-serif; }';
+        tableHtml += 'th { background-color: #2E7D32; color: #FFFFFF; font-weight: bold; border: 1px solid #1B5E20; padding: 10px; text-align: center; font-size: 11pt; }';
+        tableHtml += 'td { border: 1px solid #CFD8DC; padding: 8px 10px; font-size: 10pt; vertical-align: middle; }';
+        tableHtml += '.td-no { text-align: center; width: 45px; background-color: #F1F8F2; font-weight: bold; }';
+        tableHtml += '.td-jurusan { text-align: center; width: 90px; font-weight: bold; color: #1B5E20; }';
+        tableHtml += '.td-waktu { text-align: center; width: 110px; color: #546E7A; }';
+        tableHtml += '.even { background-color: #F9FBF9; }';
+        tableHtml += '</style></head><body>';
+        tableHtml += '<h2 style="color: #2E7D32; font-family: Segoe UI, Arial, sans-serif;">TABEL DATA KOMITMEN PENGUNJUNG KAMPANYE HEMAT ENERGI</h2>';
+        tableHtml += '<p style="color: #546E7A; font-family: Segoe UI, Arial, sans-serif; font-size: 10pt; margin-bottom: 14px;">SMK Wikrama Bogor &bull; Total Komitmen: ' + list.length + ' Peserta Didik</p>';
+        tableHtml += '<table border="1" cellpadding="8" cellspacing="0">';
+        tableHtml += '<thead><tr>';
+        tableHtml += '<th style="background-color: #2E7D32; color: #FFFFFF; width: 45px;">No</th>';
+        tableHtml += '<th style="background-color: #2E7D32; color: #FFFFFF; width: 180px;">Nama Siswa / Pengunjung</th>';
+        tableHtml += '<th style="background-color: #2E7D32; color: #FFFFFF; width: 90px;">Jurusan</th>';
+        tableHtml += '<th style="background-color: #2E7D32; color: #FFFFFF; width: 220px;">Aksi Komitmen</th>';
+        tableHtml += '<th style="background-color: #2E7D32; color: #FFFFFF; width: 320px;">Pesan / Janji Perilaku</th>';
+        tableHtml += '<th style="background-color: #2E7D32; color: #FFFFFF; width: 120px;">Waktu Kirim</th>';
+        tableHtml += '</tr></thead><tbody>';
+
+        list.forEach(function (item, idx) {
+          const rowClass = idx % 2 === 1 ? ' class="even"' : '';
+          const aksiStr = (item.aksi || []).join("; ");
+          tableHtml += '<tr' + rowClass + '>';
+          tableHtml += '<td class="td-no">' + (idx + 1) + '</td>';
+          tableHtml += '<td>' + (item.nama || "-") + '</td>';
+          tableHtml += '<td class="td-jurusan">' + (item.jurusan || "-") + '</td>';
+          tableHtml += '<td>' + aksiStr + '</td>';
+          tableHtml += '<td>' + (item.pesan || "-") + '</td>';
+          tableHtml += '<td class="td-waktu">' + (item.waktu || "-") + '</td>';
+          tableHtml += '</tr>';
+        });
+
+        tableHtml += '</tbody></table></body></html>';
+
+        const blob = new Blob([tableHtml], { type: "application/vnd.ms-excel;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "tabel-komitmen-pengunjung.xls";
+        a.click();
+        URL.revokeObjectURL(url);
+      } catch (e) {
+        alert("Gagal mengekspor tabel Excel: " + e.message);
+      }
+    });
+  }
+
   if (btnExportCsv) {
     btnExportCsv.addEventListener("click", function () {
       try {
         const stored = localStorage.getItem("komitmen_pengunjung");
         const list = stored ? JSON.parse(stored) : DATA_KOMITMEN_SEED;
 
-        let csv = "Nama,Jurusan,Aksi Komitmen,Pesan,Waktu\n";
-        list.forEach(item => {
-          const aksiStr = (item.aksi || []).join("; ");
-          const line = `"${item.nama || ''}","${item.jurusan || ''}","${aksiStr}","${(item.pesan || '').replace(/"/g, '""')}","${item.waktu || ''}"`;
-          csv += line + "\n";
+        let csv = "\uFEFFsep=;\r\nNo;Nama;Jurusan;Aksi Komitmen;Pesan;Waktu\r\n";
+        list.forEach(function (item, idx) {
+          const aksiStr = (item.aksi || []).join(", ");
+          const nama = (item.nama || "").replace(/"/g, '""');
+          const jurusan = (item.jurusan || "").replace(/"/g, '""');
+          const aksi = aksiStr.replace(/"/g, '""');
+          const pesan = (item.pesan || "").replace(/"/g, '""');
+          const waktu = (item.waktu || "").replace(/"/g, '""');
+          csv += (idx + 1) + ';"' + nama + '";"' + jurusan + '";"' + aksi + '";"' + pesan + '";"' + waktu + '"\r\n';
         });
 
         const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });

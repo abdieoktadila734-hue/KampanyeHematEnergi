@@ -68,7 +68,12 @@
 
                     <div class="rekomendasi-card">
                         <div>
-                            <span class="badge-mapel-keduanya">🤝 Sumber: Kolaborasi MTK &amp; B. INDONESIA</span>
+                            <div class="sumber-wrapper">
+                                <span class="sumber-tag sumber-keduanya">
+                                    <span class="sumber-label">SUMBER DATA</span>
+                                    <span class="sumber-value">KOLABORASI MTK &amp; B. INDONESIA</span>
+                                </span>
+                            </div>
                             <span class="role-badge">Target: Teknisi Lab &amp; Siswa Praktik (PPLG / DKV / TJKT)</span>
                             <h3>1. Standarisasi Fitur Manajemen Daya Otomatis (Auto-Sleep &amp; Auto-Shutdown) PC Lab</h3>
                             <div class="data-foundation">
@@ -87,7 +92,12 @@
 
                     <div class="rekomendasi-card">
                         <div>
-                            <span class="badge-mapel-bindo">📖 Sumber: Mapel B. INDONESIA</span>
+                            <div class="sumber-wrapper">
+                                <span class="sumber-tag sumber-bindo">
+                                    <span class="sumber-label">SUMBER DATA</span>
+                                    <span class="sumber-value">MAPEL BAHASA INDONESIA</span>
+                                </span>
+                            </div>
                             <span class="role-badge">Target: Piket Rombel &amp; Penanggung Jawab Kelas (18 Rombel)</span>
                             <h3>2. Sistem Buku Kontrol / Checklist Kelistrikan Harian Sebelum Kunci Ruangan</h3>
                             <div class="data-foundation">
@@ -106,7 +116,12 @@
 
                     <div class="rekomendasi-card">
                         <div>
-                            <span class="badge-mapel-bindo">📖 Sumber: Mapel B. INDONESIA</span>
+                            <div class="sumber-wrapper">
+                                <span class="sumber-tag sumber-bindo">
+                                    <span class="sumber-label">SUMBER DATA</span>
+                                    <span class="sumber-value">MAPEL BAHASA INDONESIA</span>
+                                </span>
+                            </div>
                             <span class="role-badge">Target: Seluruh Siswa &amp; Warga Sekolah</span>
                             <h3>3. Kampanye Eliminasi "Daya Siaga" (Phantom Load) &amp; Protokol Cabut Steker Gawai</h3>
                             <div class="data-foundation">
@@ -125,7 +140,12 @@
 
                     <div class="rekomendasi-card">
                         <div>
-                            <span class="badge-mapel-mtk">📐 Sumber: Mapel MATEMATIKA (MTK)</span>
+                            <div class="sumber-wrapper">
+                                <span class="sumber-tag sumber-mtk">
+                                    <span class="sumber-label">SUMBER DATA</span>
+                                    <span class="sumber-value">MAPEL MATEMATIKA (MTK)</span>
+                                </span>
+                            </div>
                             <span class="role-badge">Target: Budaya Teman Sebaya &amp; Tim Kreatif Rombel</span>
                             <h3>4. Pemasangan Visual Nudge (Stiker Pengingat Cerdas) &amp; Budaya Pengingat Sebaya</h3>
                             <div class="data-foundation">
@@ -409,8 +429,9 @@
 
             <h4 style="margin-bottom: 8px;">Ekspor &amp; Pengelolaan Data:</h4>
             <div class="admin-actions">
-                <button id="btnExportJson" class="btn-primary" style="padding: 8px 16px; font-size: 0.85rem;">📥 Ekspor ke JSON</button>
-                <button id="btnExportCsv" class="btn-secondary" style="padding: 8px 16px; font-size: 0.85rem;">📊 Ekspor ke CSV (Excel)</button>
+                <button id="btnExportExcel" class="btn-primary" style="padding: 8px 16px; font-size: 0.85rem; background: #2e7d32;">📊 Ekspor Tabel Excel (.xls)</button>
+                <button id="btnExportCsv" class="btn-secondary" style="padding: 8px 16px; font-size: 0.85rem;">📄 Ekspor Data CSV (.csv)</button>
+                <button id="btnExportJson" class="btn-secondary" style="padding: 8px 16px; font-size: 0.85rem; background: #546e7a;">💾 Ekspor ke JSON (.json)</button>
                 <button id="btnResetData" class="btn-secondary" style="padding: 8px 16px; font-size: 0.85rem; background: #e53935;">⚠️ Reset Data Bawaan</button>
             </div>
         </div>
