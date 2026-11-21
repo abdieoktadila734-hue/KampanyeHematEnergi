@@ -528,3 +528,48 @@
   margin-bottom: 8px;
 }
 
+.badge-mapel-mtk {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #ede7f6;
+  color: #512da8;
+  border: 1px solid #d1c4e9;
+  font-weight: 800;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  letter-spacing: 0.2px;
+}
+
+.badge-mapel-bindo {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #e3f2fd;
+  color: #0d47a1;
+  border: 1px solid #90caf9;
+  font-weight: 800;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  letter-spacing: 0.2px;
+}
+
+.badge-mapel-keduanya {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #e8f5e9;
+  color: #1b5e20;
+  border: 1px solid #81c784;
+  font-weight: 800;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  letter-spacing: 0.2px;
+}
+
